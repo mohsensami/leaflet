@@ -1,0 +1,264 @@
+@font-face {
+    font-family: 'hacoupian';
+    src: url('../fonts/IRANSans_fa.eot');
+    src: url('../fonts/IRANSans_fa.eot#iefix') format('embedded-opentype'),
+        url('../fonts/IRANSans_fa.woff') format('woff'),
+        url('../assets/fonts/IRANSans_fa.woff2') format('woff2'),
+        url('../fonts/IRANSans_fa.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'hacoupian';
+    src: url('../fonts/IRANSans_fa_Bold.eot');
+    src: url('../fonts/IRANSans_fa_Bold.eot#iefix') format('embedded-opentype'),
+        url('../fonts/IRANSans_fa_Bold.woff') format('woff'),
+        url('../fonts/IRANSans_fa_Bold.ttf') format('truetype'),
+        url('../fonts/IRANSans_fa_Bold.svg') format('svg'),
+        url('../fonts/IRANSans_fa_Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    margin: 1px 10px 0 0;
+}
+
+#map {
+    z-index: 9;
+}
+
+.map-wrapper {
+    position: relative;
+}
+
+.map {
+    height: 500px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+h2 {
+    font-size: 16px;
+}
+
+.fa-map-marker {
+    color: #a0a0a0;
+    margin-left: 4px;
+    font-size: 16px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+table td {
+    text-align: center;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+    top: 4px;
+    left: 12px;
+    right: auto;
+    font-size: 20px;
+}
+
+.leaflet-pane.leaflet-ie10-visual-click-pane-pane {
+    z-index: 300;
+}
+
+.leaflet-control-layers-list {
+    text-align: right;
+    font-size: 12px;
+    font-size: 10px;
+}
+
+.leaflet-popup-content-wrapper {
+    text-align: right;
+    padding: 9px 3px;
+    font-size: 12px;
+}
+
+.leaflet-popup-content {
+    margin: 0px 6px;
+}
+
+.leaflet-popup-content-wrapper ul {
+    padding: 0;
+    line-height: 24px;
+    list-style-type: none;
+    margin: 0;
+    font-size: 11px;
+}
+
+.leaflet-popup-content .thumbnail {
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    max-width: 100%;
+    height: auto;
+}
+
+.leaflet-popup-content p {
+    margin: 2px 0 0;
+    font-size: 11px;
+}
+
+.leaflet-popup-content-wrapper h2 {
+    text-align: center;
+}
+
+.listings .item {
+    line-height: 35px;
+    font-size: 12px;
+    padding: 0 10px;
+}
+
+.heading {
+    padding: 0px 12px 0 12px;
+}
+
+.heading h2 {
+    margin: 8px;
+    font-size: 12px;
+}
+
+.leaflet-control-layers-selector {
+    top: 4px;
+}
+
+.leaflet-control-layers-list {
+    line-height: 24px;
+}
+
+#search-input {
+    padding: 5px 12px;
+    font-size: 15px;
+    background: #ece5d0;
+    font-family: 'hacoupian';
+    border: 1px solid #aad3df;
+}
+
+#infoDivInner ul {
+    padding: 0 10px;
+    line-height: 35px;
+    font-size: 12px;
+    list-style-type: none;
+    margin: 0;
+}
+
+#infoDivInner h2 {
+    text-align: right;
+    padding: 5px 12px;
+    margin: 0;
+}
+
+#infoClose {
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    padding: 0;
+    position: absolute;
+    left: 4px;
+    top: 0;
+    font-style: inherit;
+    width: 16px;
+    text-align: center;
+    font-size: 21px;
+}
+
+#storeinfo {
+    position: absolute;
+    width: 450px;
+    color: #ffffff;
+    background-color: #b8997b;
+    padding: 0 16px;
+}
+
+#storeinfo h2 {
+    font-size: 16px;
+}
+
+#storeinfo h2 a {
+    color: #fff;
+}
+
+#searchbox {
+    height: auto;
+    padding: 4px 12px;
+}
+
+.photo-store {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+}
+
+.sidebar {
+    text-align: right;
+    z-index: 999999999;
+    overflow: scroll;
+    border: 1px solid rgba(0, 0, 0, .25);
+    height: 500px;
+    float: right;
+    width: auto;
+    max-width: initial;
+    width: 96%;
+}
+
+.sidebar ul li {
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+    line-height: 31px;
+}
+
+#searchIcon {
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+.leaflet-top {
+    bottom: 16px;
+    top: auto !important;
+}
+
+.ti-location-pin {
+    font-size: 17px;
+}
+
+.leaflet-popup-content-wrapper h2 {
+    font-size: 16px;
+    margin: 0;
+}
+
+@media screen and (min-width: 992px) {
+    #app {
+        min-height: 1200px;
+    }
+}
+
+/* width */
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Handle */
+.sidebar::-webkit-scrollbar-thumb {
+    background: #d1ae8b;
+}

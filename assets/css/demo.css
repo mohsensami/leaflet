@@ -7,6 +7,7 @@ body {
     padding: 0;
     margin: 0;
 }
+
 body {
     background-color: #fff;
     font-family: Arial, Helvetica, Verdana;
@@ -16,6 +17,7 @@ body {
     position: relative;
     -webkit-text-size-adjust: none;
 }
+
 h1,
 h2,
 h3,
@@ -25,9 +27,11 @@ h6 {
     margin: 1em 0;
     font-size: 22px;
 }
+
 p {
     margin: 1em 0;
 }
+
 a,
 a:link,
 a:active,
@@ -51,8 +55,9 @@ nav:not(.mm-menu) {
     color: #fff;
     line-height: 44px;
     text-align: center;
-    background: #bba6a2;
+    background: #9F3539;
 }
+
 #header a {
     display: block;
     position: absolute;
@@ -62,6 +67,7 @@ nav:not(.mm-menu) {
     height: 50px;
     padding: 15px 25px;
 }
+
 #header a:before,
 #header a:after {
     content: "";
@@ -69,6 +75,7 @@ nav:not(.mm-menu) {
     background: #fff;
     height: 2px;
 }
+
 #header a span {
     background: #fff;
     display: block;

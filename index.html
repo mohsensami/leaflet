@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="author" content="www.frebsite.nl" />
+    <meta name="author" content="#" />
     <meta name="viewport" content="width=device-width minimum-scale=1.0 maximum-scale=1.0 user-scalable=no" />
 
     <title>mmenu.js demo</title>
@@ -11,6 +11,17 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="./assets/css/demo.css" />
     <link rel="stylesheet" href="./assets/css/mmenu.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!--Leaflet 1.0.3-->
+    <link rel="stylesheet" href="./assets/css/leaflet.css" />
+    <script src="./assets/js/leaflet.js"></script>
+    <!--Leaflet Plugins-->
+    <link rel="stylesheet" type="text/css" href="./assets/css/L.VisualClick.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <script src="./assets/js/L.VisualClick.js"></script>
+    <script src='./assets/js/leaflet-omnivore.min.js'></script>
+    <script src='./assets/js/leaflet-hash.js'></script>
 
     <style>
         .mm-wrapper--sidebar-expanded.mm-wrapper--opened #header a {
@@ -22,6 +33,10 @@
             margin-inline-start: 8px;
         }
 
+        #map {
+            height: 100vh;
+        }
+
         @media (max-width: 450px) {
             .mm-navbar--tabs span {
                 display: none;
@@ -31,136 +46,38 @@
 </head>
 
 <body>
-    <div id="page">
+    <div id="app">
         <div id="header">
             <a href="#menu"><span></span></a>
-            Demo
+            LeafLet
         </div>
-        <div id="content">
-            <h1>This is a demo.</h1>
-            <p>Click the menu icon to open the menu.</p>
+        <div class="map-wrapper">
+            <div id='map' class='map'></div>
         </div>
+
         <nav id="menu">
-            <div id="panel-menu">
-                <ul>
-                    <li>
-                        <a href="#/">Home</a>
-                        <input type="checkbox" class="mm-toggle" />
-                    </li>
-                    <li>
-                        <span>About us</span>
-                        <ul>
-                            <li><a href="#/">History</a></li>
-                            <li>
-                                <span>The team</span>
-                                <ul>
-                                    <li><a href="#/">Management</a></li>
-                                    <li><a href="#/">Sales</a></li>
-                                    <li><a href="#/">Development</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#/">Our address</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#/">Contact</a></li>
-
-                    <li class="Divider">Other demos</li>
-                    <li><a href="default.html">Default demo</a></li>
-                    <li><a href="onepage.html">One page demo</a></li>
-                </ul>
-            </div>
-
-            <ul id="panel-account" data-mm-title="Account">
-                <li><a href="#/">My profile</a></li>
-                <li><a href="#/">Privacy settings</a></li>
-                <li><a href="#/">Activity</a></li>
-                <li><a href="#/">Sign out</a></li>
+            <ul>
+                <div class='sidebar'>
+                    <div id="searchbox" style="display:none;">
+                        <input type="text" id="search-input" autofocus />
+                    </div>
+                    <div class=''>
+                        <span id="searchIcon"><i class="fa fa-search"></i></span>
+                    </div>
+                    <div id="storeinfo"><i id="infoClose" class="fa fa-times">×</i>
+                        <div id="infoDivInner"></div>
+                    </div>
+                    <div id='listingDiv' class='listings'></div>
+                </div>
             </ul>
-
-            <div id="panel-cart" data-mm-title="Shopping cart">
-                <p style="text-align: center; padding-top: 30px">
-                    Your shoppingcart is empty.<br />
-                    <a href="#/">Continue shopping.</a>
-                </p>
-            </div>
         </nav>
+
     </div>
 
     <!-- mmenu scripts -->
     <script src="./assets/js/mmenu.js"></script>
     <script>
-        new Mmenu(
-            document.querySelector("#menu"),
-            {
-                theme: "white",
-                setSelected: {
-                    hover: true,
-                    parent: true,
-                },
-                counters: {
-                    add: true,
-                },
-                searchfield: {
-                    add: true,
-                    placeholder: "Search menu items",
-                    splash: "<p>What are you looking for?</p>",
-                    title: "Search",
-                },
-                iconbar: {
-                    use: "(min-width: 450px)",
-                    top: [
-                        '<a href="#/"><span class="fa fa-home"></span></a>',
-                    ],
-                    bottom: [
-                        '<a href="#/"><span class="fa fa-twitter"></span></a>',
-                        '<a href="#/"><span class="fa fa-facebook"></span></a>',
-                        '<a href="#/"><span class="fa fa-youtube"></span></a>',
-                    ],
-                },
-                iconPanels: {
-                    add: true,
-                    visible: 1,
-                },
-                sidebar: {
-                    collapsed: {
-                        use: "(min-width: 768px)",
-                    },
-                    expanded: {
-                        use: "(min-width: 1024px)",
-                        initial: "closed",
-                    },
-                },
-
-                navbars: [
-                    {
-                        content: ["searchfield"],
-                    },
-                    {
-                        type: "tabs",
-                        content: [
-                            '<a href="#panel-menu"><i class="fa fa-bars"></i> <span>Menu</span></a>',
-                            '<a href="#panel-account"><i class="fa fa-user"></i> <span>Account</span></a>',
-                            '<a href="#panel-cart"><i class="fa fa-shopping-cart"></i> <span>Cart</span></a>',
-                        ],
-                    },
-                    {
-                        content: ["prev", "breadcrumbs", "close"],
-                    },
-                    {
-                        position: "bottom",
-                        content: [
-                            '<a href="https://mmenujs.com/wordpress-plugin" target="_blank">WordPress plugin</a>',
-                        ],
-                    },
-                ],
-            },
-            {
-                searchfield: {
-                    cancel: true,
-                    clear: true,
-                },
-            }
-        );
+        new Mmenu(document.querySelector("#menu"));
 
         document.addEventListener("click", function (evnt) {
             var anchor = evnt.target.closest('a[href="#/"]');
@@ -170,6 +87,292 @@
             }
         });
     </script>
+
+
+
+    <script>
+        var base_url = '/';
+
+
+
+        //basic map setup map and basemap
+        //     var map = L.map('map')
+        //       .setView([32.92209882293009, 53.99010666323974], 6);
+
+        var map = L.map('map', {
+            center: [33.46961599448429, 53.07513083970446],
+            zoom: 60
+        });
+
+        //L.hash(map);
+        var blackandwhite = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+
+        }).addTo(map);
+
+        // 	var googlemap = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+
+        //     	subdomains:['mt0','mt1','mt2','mt3']
+        //     }).addTo(map);
+
+        var openstreetmap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+        }).addTo(map);
+
+        //     var googleStreets = L.gridLayer.googleMutant({
+        //       type: 'roadmap' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
+        //     }).addTo(map);
+
+        //layer control
+        var baselayers = {
+
+            //"Google Street" : googleStreets,
+            "سیاه و سفید": blackandwhite,
+            "رنگی": openstreetmap,
+
+            // 		"گوگل مپ"			: googlemap,
+
+        };
+
+        var layerControl = new L.control.layers(baselayers, null).addTo(map);
+
+        //end basic map
+
+        //show search on search icon click
+        //global variables - could add more here
+        var locationLat = [];
+        var locationLng = [];
+        var locMarker;
+        var infoDiv = document.getElementById('storeinfo');
+        var infoDivInner = document.getElementById('infoDivInner');
+        var toggleSearch = document.getElementById('searchIcon');
+        var hasCircle = 0;
+        var circle = [];
+        //close store infor when x is clicked
+        var userLocation;
+        $("#infoClose").click(function () {
+            $("#storeinfo").hide();
+            if (map.hasLayer(circle)) {
+                map.removeLayer(circle);
+            }
+        });
+        var listings = document.getElementById('listingDiv');
+        var stores = L.geoJson().addTo(map);
+        var storesData = omnivore.csv('./assets/stores.csv');
+
+        function setActive(el) {
+            var siblings = listings.getElementsByTagName('div');
+            for (var i = 0; i < siblings.length; i++) {
+                siblings[i].className = siblings[i].className
+                    .replace(/active/, '').replace(/\s\s*$/, '');
+            }
+            el.className += ' active';
+        }
+
+        function sortGeojson(a, b, prop) {
+            return (a.properties.name.toUpperCase() < b.properties.name.toUpperCase()) ? -1 : ((a.properties.name.toUpperCase() > b.properties.name.toUpperCase()) ? 1 : 0);
+        }
+
+        storesData.on('ready', function () {
+
+            var storesSorted = storesData.toGeoJSON();
+            //console.log(storesSorted);
+            var sorted = (storesSorted.features).sort(sortGeojson)
+            //console.log(sorted);
+            storesSorted.features = sorted;
+            //console.log(storesSorted)
+            stores.addData(storesSorted);
+
+            map.fitBounds(stores.getBounds());
+            toggleSearch.onclick = function () {
+                var s = document.getElementById('searchbox');
+                if (s.style.display != 'none') {
+                    s.style.display = 'none';
+                    toggleSearch.innerHTML = '<i class="ti-search"></i>';
+                    $("#search-input").val("");
+
+                    //search.collapse();
+                    document.getElementById('storeinfo').style.display = 'none';
+                    $('.item').show();
+                } else {
+                    toggleSearch.innerHTML = '<i class="fa fa-times"></i>';
+                    s.style.display = 'block';
+
+                    //attempt to autofocus search input field when opened
+                    $('#search-input').focus();
+                }
+            };
+            stores.eachLayer(function (layer) {
+
+                //New jquery search
+                $('#searchbox').on('change paste keyup', function () {
+                    var txt = $('#search-input').val();
+                    $('.item').each(function () {
+                        if ($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                });
+
+                // Shorten layer.feature.properties to just `prop` so we're not
+                // writing this long form over and over again.
+                var prop = layer.feature.properties;
+                var layerx = layer.getLatLng().lat;
+                var layery = layer.getLatLng().lng;
+
+                ////console.log(locationLat);
+                // Each marker on the map.
+                var popup = '<h2>' + prop.name + '</h2>' +
+                    '<ul><li>آدرس:' + prop.address + '  تلفن: ' + prop.phone + ' - 0' + prop.code + '</li><hr /></ul>' +
+                    '<p id="directions"><i class="ti-location-pin"></i><a href="https://www.google.com/maps/dir//?saddr=My+Location' + '&daddr=' + layerx + ',' + layery + '" target="_blank">مسیریاب</a></p>';
+                var listing = listings.appendChild(document.createElement('div'));
+                listing.className = 'item';
+                var link = listing.appendChild(document.createElement('a'));
+                link.href = '#';
+                link.className = 'title';
+                link.innerHTML = prop.name;
+                if (prop.products) {
+                    link.innerHTML += '<br /><small class="quiet">' + prop.products + '</small>';
+                }
+                var details = listing.appendChild(document.createElement('div'));
+                details.innerHTML = prop.address;
+                var linkClick = 0;
+                link.onclick = function () {
+                    linkClick = 1;
+                    setActive(listing);
+
+                    //console.log(locationLat);
+                    // When a menu item is clicked, animate the map to center
+                    // its associated layer and open its popup.
+                    map.setView(layer.getLatLng(), 18);
+                    layer.fire('click');
+                    infoDiv.style.display = 'block';
+
+                    //layer.openPopup();
+                    //		    sidebar.setContent(popup);
+                    //		    sidebar.show();
+                    return false;
+                };
+                // Marker interaction
+                layer.on('click', function (e) {
+                    if (map.hasLayer(userLocation)) {
+                        map.removeLayer(userLocation)
+                    }
+                    //console.log(e.latlng);
+                    if (linkClick != 1) {
+                        map.setView([e.latlng.lat, e.latlng.lng], 12);
+                    }
+                    linkClick = 0;
+                    $(".item").show();
+                    $("#searchbox").hide();
+                    toggleSearch.innerHTML = '<i class="fa fa-search"></i>';
+                    if (map.hasLayer(circle)) {
+                        map.removeLayer(circle);
+                        hasCircle = 0;
+                    }
+                    // 1. center the map on the selected marker.
+                    //map.setView(layer.getLatLng(), map.getZoom());
+                    // use this forr polygons and lines - map.panTo(layer.getBounds().getCenter());
+                    // 2. Set active the markers associated listing.
+                    setActive(listing);
+                    // sidebar.setContent(popup);
+                    infoDiv.style.display = "block";
+                    infoDivInner.innerHTML = '<div class="row"><div class="col-md-12"><h2><a href="' + 'http://hacoupian.net/stores/' + prop.photo + '">' + prop.name + '</a></h2>' +
+                        '<ul><li>تلفن تماس: ' + prop.phone + ' - 0' + prop.code + '</li>' +
+                        // 					'<li>فکس: ' + prop.fax + ' - 0' + prop.code + '</li>' +
+                        '<li>ساعات کاری: ' + prop.index + '</li></ul></div>';
+                    // sidebar.show();
+                    xy = layer.getLatLng();
+                    setTimeout(function () {
+                        circle = new L.circleMarker(xy, {
+                            color: 'transparent',
+                            fillColor: 'transparent',
+                            fillOpacity: 0,
+                            radius: 50,
+                        }).addTo(map);
+                    }, 200);
+                });
+                popup += '</div>';
+                layer.bindPopup(popup);
+                layer.setIcon(L.icon({
+                    iconUrl: './assets/marker.png',
+                    iconSize: ['auto', 'auto'],
+                    iconAnchor: [40, 50],
+                    popupAnchor: [-30, -47]
+                }));
+            }); //end eachLayer
+
+            map.locate({
+                setView: true,
+                maxZoom: 6
+            });
+
+            map.on('locationfound', function (e) {
+                console.log(e);
+                //8046.72 meters = 5 miles
+                var radius = 80000;
+                //       var rmiles = (radius/1609.34).toFixed(0);
+                var range = 10;
+                userLocation = new L.Circle(e.latlng, radius, {
+                    color: 'cadetblue',
+                    fillColor: 'cadetblue',
+                    fillOpacity: 0,
+                    radius: 30
+                });
+                var point = turf.point([e.longitude, e.latitude]);
+
+                var storesWithin = storesSorted.features.map(function (store) {
+                    var newpoint = turf.feature(store.geometry);
+                    console.log(turf.distance(newpoint, point, { units: 'miles' }));
+                    if (turf.distance(newpoint, point, { units: 'miles' }) <= range) {
+                        return store
+                    }
+                });
+                console.log(storesWithin);
+
+                //       var within = turf.featureCollection(stores.eachLayer(function(store) {
+                //         console.log(store);
+                //         var newpoint = turf.feature(store.feature.geometry);
+                //         console.log(turf.distance(newpoint, point, {units: 'miles'}));
+                //         if (turf.distance(newpoint, point, {units: 'miles'}) <= range) return true;
+                //       }));
+                //       console.log(within);
+                //       var size = Object.keys(within.features._layers).length;
+                //       console.log(size);
+                var nearest = turf.nearest(point, stores.toGeoJSON());
+                console.log(nearest);
+                if (nearest.properties.name) {
+                    $("#infoDivInner").html("Location found!<br>Your nearest store is " + "<strong>" + nearest.properties.name + "</strong>");
+                    circle = new L.circleMarker([nearest.geometry.coordinates[1], nearest.geometry.coordinates[0]], {
+                        color: 'red',
+                        fillColor: '#f03',
+                        fillOpacity: 0,
+                        radius: 50,
+                    }).addTo(map);
+                    console.log(circle);
+                    hasCircle = 1;
+                }
+                $("#storeinfo").show();
+            })
+        }); //end on ready function
+        //setTimeout(function() {
+
+        //sidebar.hide();
+        //}, 500);
+        map.on('click', function () {
+            if (map.hasLayer(userLocation)) {
+                map.removeLayer(userLocation)
+            }
+            if (map.hasLayer(circle)) {
+                ////console.log('circle');
+                map.removeLayer(circle);
+                hasCircle = 0;
+            }
+        });
+    </script>
+
+
 </body>
 
 </html>
