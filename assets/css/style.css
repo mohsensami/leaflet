@@ -29,6 +29,7 @@ hr {
 input[type="checkbox"],
 input[type="radio"] {
     margin: 1px 10px 0 0;
+    width: 100%;
 }
 
 #map {
@@ -124,9 +125,15 @@ table td {
 }
 
 .listings .item {
-    line-height: 35px;
+    line-height: 50px;
     font-size: 12px;
-    padding: 0 10px;
+    padding: 10px;
+    border-bottom: 1px solid #fff;
+}
+
+.listings .item .title{
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .heading {
@@ -184,18 +191,22 @@ table td {
 
 #storeinfo {
     position: absolute;
-    width: 450px;
-    color: #ffffff;
-    background-color: #b8997b;
-    padding: 0 16px;
+    width: 100%;
+    color: #fff;
+    background-color: #00000085;
+    padding: 13px 16px;
+    z-index: 9;
+    text-align: center;
 }
 
 #storeinfo h2 {
-    font-size: 16px;
+    font-size: 22px;
+    text-align: center;
 }
 
 #storeinfo h2 a {
     color: #fff;
+    text-decoration: none;
 }
 
 #searchbox {
@@ -210,15 +221,16 @@ table td {
 }
 
 .sidebar {
+    color: #fff;
     text-align: right;
     z-index: 999999999;
     overflow: scroll;
     border: 1px solid rgba(0, 0, 0, .25);
-    height: 500px;
     float: right;
-    width: auto;
     max-width: initial;
-    width: 96%;
+    background: #7f2a2e;
+    height: 100%;
+    width: 100%;
 }
 
 .sidebar ul li {
@@ -262,3 +274,5 @@ table td {
 .sidebar::-webkit-scrollbar-thumb {
     background: #d1ae8b;
 }
+
+
